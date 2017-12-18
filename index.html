@@ -1,0 +1,59 @@
+<html>
+<head>
+  <title>My Payment Form</title>
+  <!-- link to the SqPaymentForm library -->
+  <script type="text/javascript" src="https://js.squareup.com/v2/paymentform"></script>
+
+  <!-- link to the local SqPaymentForm initialization -->
+  <script type="text/javascript" src="/sqpaymentform.js"></script>
+
+  <!-- link to the custom styles for SqPaymentForm -->
+  <link rel="stylesheet" type="text/css" href="/sqpaymentform.css">
+</head>
+<body>
+  <div id="sq-ccbox">
+    <!--
+      You should replace the action attribute of the form with the path of
+      the URL you want to POST the nonce to (for example, "/process-card")
+    -->
+    <form id="nonce-form" novalidate action="/process-card.php" method="post">
+      カードで支払います
+      <table><tbody>
+        <tr>
+          <td>カード番号:</td>
+          <td><div id="sq-card-number"></div></td>
+        </tr>
+        <tr>
+          <td>CVV:</td>
+          <td><div id="sq-cvv"></div></td>
+        </tr>
+        <tr>
+          <td>有効期限:</td>
+          <td><div id="sq-expiration-date"></div></td>
+        </tr>
+        <tr>
+          <td>郵便番号:</td>
+          <td><div id="sq-postal-code"></div></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button id="sq-creditcard" class="button-credit-card" onclick="requestCardNonce(event)">
+              カードで支払う
+            </button>
+          </td>
+        </tr>
+      </tbody></table>
+      <input type="hidden" id="card-nonce" name="nonce">
+    </form>
+  </div>
+
+  <div id="sq-walletbox">
+    デジタル通貨で支払う
+    <div id="sq-apple-pay-label" class="wallet-not-enabled">Apple Pay for Web が有効ではありません</div>
+    <button id="sq-apple-pay" class="button-apple-pay"></button>
+
+    <div id="sq-masterpass-label" class="wallet-not-enabled">Masterpassが有効ではありません</div>
+    <button id="sq-masterpass" class="button-masterpass"></button>
+  </div>
+</body>
+</html>
